@@ -1,7 +1,4 @@
 //SPDX-License-Identifier: MIT
-// Fund
-//Withdraw
-
 pragma solidity ^0.8.18;
 
 import {Script, console} from "forge-std/Script.sol";
@@ -18,7 +15,7 @@ contract FundFundMe is Script {
         console.log("Funded FundMe with %s", SEND_VALUE);
     }
 
-    function run() external { //not used currently
+    function run() external {
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
             "FundMe",
             block.chainid
@@ -36,7 +33,7 @@ contract WithdrawFundMe is Script {
         console.log("Withdraw FundMe balance!");
     }
 
-    function run() external {  //not used currently
+    function run() external {
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
             "FundMe",
             block.chainid

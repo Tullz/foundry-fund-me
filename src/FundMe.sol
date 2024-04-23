@@ -13,7 +13,7 @@ contract FundMe {
     address[] private s_funders;
 
     address private immutable i_owner;
-    uint256 public constant MINIMUM_USD = 5 * 10 ** 18; //5e18
+    uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
     AggregatorV3Interface private s_priceFeed;
 
     constructor(address priceFeed) {
@@ -26,13 +26,11 @@ contract FundMe {
             msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
             "You need to spend more ETH!"
         );
-        // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         s_addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
     }
 
     modifier onlyOwner() {
-        // require(msg.sender == owner);
         if (msg.sender != i_owner) revert NotOwner();
         _;
     }
@@ -67,31 +65,11 @@ contract FundMe {
             s_addressToAmountFunded[funder] = 0;
         }
         s_funders = new address[](0);
-        // // transfer
-        // payable(msg.sender).transfer(address(this).balance);
-
-        // // send
-        // bool sendSuccess = payable(msg.sender).send(address(this).balance);
-        // require(sendSuccess, "Send failed");
-
-        // call
         (bool callSuccess, ) = payable(msg.sender).call{
             value: address(this).balance
         }("");
         require(callSuccess, "Call failed");
     }
-
-    // Explainer from: https://solidity-by-example.org/fallback/
-    // Ether is sent to contract
-    //      is msg.data empty?
-    //          /   \
-    //         yes  no
-    //         /     \
-    //    receive()?  fallback()
-    //     /   \
-    //   yes   no
-    //  /        \
-    //receive()  fallback()
 
     fallback() external payable {
         fund();
@@ -127,12 +105,3 @@ contract FundMe {
         return s_priceFeed;
     }
 }
-
-// Concepts we didn't cover yet (will cover in later sections)
-// 1. Enum
-// 2. Events
-// 3. Try / Catch
-// 4. Function Selector
-// 5. abi.encode / decode
-// 6. Hash with keccak256
-// 7. Yul / Assembly

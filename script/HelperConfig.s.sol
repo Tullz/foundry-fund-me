@@ -1,8 +1,4 @@
-// Deploy mocks when we are on a local anvil chain
-// Keep track of CA across diff chains
-// sepolia eth usd
-// mainnet eth usd
-
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
 import {Script} from "forge-std/Script.sol";
@@ -46,11 +42,9 @@ contract HelperConfig is Script {
 
     function getOrCreateAnvilEthConfig() public returns (NetworkConfig memory) {
         if (activeNetworkConfig.priceFeed != address(0)) {
-            // checks to see if we already have a contract deployed, == no need to double deploy
+            // checks to see if we already have a contract deployed
             return activeNetworkConfig;
         }
-        //deploy the mocks
-        //returns the mock address
 
         vm.startBroadcast();
         MockV3Aggregator mockPriceFeed = new MockV3Aggregator(

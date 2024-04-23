@@ -22,10 +22,10 @@ withdraw-fundme:
 # Contract address on Sepolia used - writing down to remind of format
 
 fund-sepolia:
-	cast send --rpc-url $(SEPOLIA_RPC_URL) --account sepoliaKey 0xBf98867a0950D64A63BDCB5E5F4B7Ea70Ba07250 "fund()" --value 0.01ether --priority-gas-price 1
+	cast send --rpc-url $(SEPOLIA_RPC_URL) --account sepoliaKey *INSERT CA* "fund()" --value 0.01ether --priority-gas-price 1
 
 storage-sepolia:
-	cast storage 0xBf98867a0950D64A63BDCB5E5F4B7Ea70Ba07250 --rpc-url $(SEPOLIA_RPC_URL) --etherscan-api-key $(ETHERSCAN_API_KEY)
+	cast storage *INSERT CA* --rpc-url $(SEPOLIA_RPC_URL) --etherscan-api-key $(ETHERSCAN_API_KEY)
 
 withdraw-sepolia:
-	cast send --rpc-url $(SEPOLIA_RPC_URL) --account sepoliaKey 0xdc59733BeC6b376d652E63f0bC5EBc32a3c977cF "withdraw()" --priority-gas-price 1
+	cast send --rpc-url $(SEPOLIA_RPC_URL) --account sepoliaKey *INSERT CA* "withdraw()" --priority-gas-price 1

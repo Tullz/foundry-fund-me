@@ -16,5 +16,3 @@ contract DeployFundMe is Script {
         return fundMe;
     }
 }
-
-// https://docs.chain.link/data-feeds/price-feeds/addresses - ETH USD chainlink price feed - 0x694AA1769357215DE4FAC081bf1f309aDC325306

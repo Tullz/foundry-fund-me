@@ -13,7 +13,6 @@ contract FundMeTest is Test {
     uint256 constant GAS_PRICE = 1;
 
     function setUp() external {
-        //fundMe = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         DeployFundMe deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
         vm.deal(USER, STARTING_BALANCE);
@@ -46,7 +45,7 @@ contract FundMeTest is Test {
     }
 
     function testAddsFunderToArrayOfFunders() public {
-        vm.prank(USER); //modifier does these two lines for us
+        vm.prank(USER);
         fundMe.fund{value: SEND_VALUE}();
 
         address funder = fundMe.getFunder(0);
@@ -98,14 +97,8 @@ contract FundMeTest is Test {
         uint256 startingFundMeBalance = address(fundMe).balance;
 
         //act
-        // uint256 gasStart = gasleft();
-        // vm.txGasPrice(GAS_PRICE);
         vm.prank(fundMe.getOwner());
         fundMe.withdraw();
-        // uint256 gasEnd = gasleft();
-
-        // uint256 gasUsed = (gasStart - gasEnd) * tx.gasprice;
-        // console.log(gasUsed);
 
         //assert
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
@@ -131,14 +124,8 @@ contract FundMeTest is Test {
         uint256 startingFundMeBalance = address(fundMe).balance;
 
         //act
-        // uint256 gasStart = gasleft();
-        // vm.txGasPrice(GAS_PRICE);
         vm.prank(fundMe.getOwner());
         fundMe.cheaperWithdraw();
-        // uint256 gasEnd = gasleft();
-
-        // uint256 gasUsed = (gasStart - gasEnd) * tx.gasprice;
-        // console.log(gasUsed);
 
         //assert
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
