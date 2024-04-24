@@ -2,7 +2,7 @@
 
 ## Run the tests
 
-# forge test
-# forge test --rpc-url $SEPOLIA_RPC_URL 
+``` forge test ```<br>
+``` forge test --rpc-url $SEPOLIA_RPC_URL ```
 
 ## Check the makefile for deploy commands
