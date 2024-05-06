@@ -15,7 +15,7 @@ fund-fundme:
 	forge script script/Interactions.s.sol:FundFundMe --rpc-url $(SEPOLIA_RPC_URL) --sender $(SEPOLIA_ADDR) --account sepoliaKey --broadcast --priority-gas-price 1 -vvvv
 
 withdraw-fundme:
-	forge script script/Interactions.s.sol:FundMe --rpc-url $(SEPOLIA_RPC_URL) --sender $(SEPOLIA_ADDR) --account sepoliaKey --broadcast --priority-gas-price 1 -vvvv
+	forge script script/Interactions.s.sol:WithdrawFundMe --rpc-url $(SEPOLIA_RPC_URL) --sender $(SEPOLIA_ADDR) --account sepoliaKey --broadcast --priority-gas-price 1 -vvvv
 
 
 
